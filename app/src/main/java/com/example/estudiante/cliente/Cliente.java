@@ -31,7 +31,7 @@ public class Cliente extends Thread {
         }
 
     }
-        public void enviar () {
+        public void enviar (final String instruccion) {
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -42,7 +42,7 @@ public class Cliente extends Thread {
                   OutputStream  os = s.getOutputStream();
 
                     PrintWriter out = new PrintWriter(new OutputStreamWriter(os));
-                    out.println("wola Funciona");
+                    out.println(instruccion);
                     out.flush();
 
                 } catch (IOException e) {

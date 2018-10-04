@@ -6,7 +6,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity implements Receptor.OnMessage{
+public class MainActivity extends AppCompatActivity implements Receptor.OnMessage {
+
     private Button btn_enviar;
     private Cliente c;
 
@@ -14,15 +15,15 @@ public class MainActivity extends AppCompatActivity implements Receptor.OnMessag
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        btn_enviar= findViewById(R.id.btn_enviar);
+        btn_enviar = findViewById(R.id.btn_enviar);
 
         c = new Cliente(this);
-       c.start();
+        c.start();
 
         btn_enviar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-            c.enviar();
+                c.enviar("inicio:holiwi");
             }
         });
 
@@ -30,11 +31,12 @@ public class MainActivity extends AppCompatActivity implements Receptor.OnMessag
 
     @Override
     public void onReceived(final String mensaje) {
-    runOnUiThread(new Runnable() {
-        @Override
-        public void run() {
-            Toast.makeText(MainActivity.this,mensaje,Toast.LENGTH_SHORT).show();
-        }
-    });
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                Toast.makeText(MainActivity.this, mensaje, Toast.LENGTH_SHORT).show();
+                //
+            }
+        });
     }
 }
